@@ -1,41 +1,38 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+# ==========================================
+# 1. Frontend / Node.js Ignores
+# ==========================================
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+frontend/build/
+frontend/dist/
+frontend/npm-debug.log*
+frontend/yarn-debug.log*
+frontend/yarn-error.log*
+frontend/.pnpm-debug.log*
+frontend/.env*.local
+frontend/.vercel
 
-# dependencies
-/node_modules
-/.pnp
-.pnp.*
-.yarn/*
-!.yarn/patches
-!.yarn/plugins
-!.yarn/releases
-!.yarn/versions
+# ==========================================
+# 2. Backend / Python & Jupyter Ignores
+# ==========================================
+# Virtual environments
+backend/.venv/
+backend/venv/
+backend/env/
+backend/ENV/
+backend/pyvenv.cfg
 
-# testing
-/coverage
+# Python cache and compiled files
+backend/__pycache__/
+backend/**/*.py[cod]
+backend/**/$py.class
+backend/.pytest_cache/
 
-# next.js
-/.next/
-/out/
+# Jupyter Notebook checkpoints
+backend/.ipynb_checkpoints/
 
-# production
-/build
-
-# misc
+# IDE / System files
 .DS_Store
-*.pem
-
-# debug
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-.pnpm-debug.log*
-
-# env files (can opt-in for committing if needed)
-.env*
-
-# vercel
-.vercel
-
-# typescript
-*.tsbuildinfo
-next-env.d.ts
+Thumbs.db
+.vscode/ipch/
