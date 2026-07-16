@@ -1,47 +1,66 @@
-import React from 'react';
+"use client"
+import React, { useState } from 'react';
 
-export default function AICoachSection() {
+export default function AICoachSection({ activeTab }: { activeTab: string }) {
+  const [questAccepted, setQuestAccepted] = useState(false);
+
+  const content = {
+    Aura: { title: "Circadian Sync", text: "Your heart rate peaked on Tuesday because sleep was only 5.5h. Engage wind-down mode 30 mins earlier tonight on your SmartThings ecosystem." },
+    Metrics: { title: "SpO2 Anomaly", text: "Oxygen levels dropped to 92% at 3 AM. This correlates with your reported nasal congestion. Continue monitoring tonight via Galaxy Watch." },
+    Coach: { title: "Endurance Phase", text: "Your HRV is perfectly primed for a high-intensity workout today. Push your physical limits on the treadmill this afternoon." }
+  };
+
+  const currentContent = content[activeTab as keyof typeof content];
+
   return (
     <section className="px-8 py-16 md:px-16 text-white max-w-7xl mx-auto">
       <div className="flex justify-between items-end mb-10">
-        <h2 className="font-display text-4xl font-bold">Aura AI Coach</h2>
-        <span className="text-gray-400 font-semibold cursor-pointer hover:text-white transition">View All Data →</span>
+        <h2 className="font-display text-4xl font-bold">Aura AI Intelligence</h2>
+        <span className="text-gray-400 font-semibold cursor-pointer hover:text-[#D1F843] transition-colors flex items-center gap-2">
+          Sync Galaxy Health 
+          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
+        </span>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="bg-[#1A1A1A] rounded-[2rem] p-8 border border-gray-800 hover:border-[#D1F843] transition-colors group">
-          <div className="w-12 h-12 rounded-full bg-white text-black flex items-center justify-center mb-6 group-hover:bg-[#D1F843] transition-colors">
+        <div className="bg-[#1A1A1A] rounded-[2rem] p-8 border border-gray-800 hover:border-[#D1F843] transition-colors group cursor-pointer">
+          <div className="w-12 h-12 rounded-full bg-white text-black flex items-center justify-center mb-6 group-hover:bg-[#D1F843] group-hover:rotate-12 transition-all">
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
           </div>
-          <h3 className="font-display text-2xl font-bold mb-4">Circadian Sync</h3>
-          <p className="text-gray-400 text-sm leading-relaxed">
-            Your heart rate peaked on Tuesday because sleep was only 5.5h. Engage wind-down mode 30 mins earlier tonight.
+          <h3 className="font-display text-2xl font-bold mb-4">{currentContent.title}</h3>
+          <p className="text-gray-400 text-sm leading-relaxed min-h-[60px]">
+            {currentContent.text}
           </p>
         </div>
 
-        <div className="bg-[#D1F843] rounded-[2rem] p-8 text-black flex flex-col justify-between transform hover:-translate-y-2 transition-transform">
+        <div className={`rounded-[2rem] p-8 flex flex-col justify-between transition-all duration-500 ${questAccepted ? 'bg-[#005840] text-white' : 'bg-[#D1F843] text-black hover:-translate-y-2'}`}>
           <div>
             <div className="flex justify-between items-center mb-6">
               <h3 className="font-display text-2xl font-bold">Habit Stack</h3>
-              <span className="bg-black text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">Quest</span>
+              <span className={`${questAccepted ? 'bg-white text-black' : 'bg-black text-white'} px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider transition-colors`}>
+                {questAccepted ? 'Active' : 'Quest'}
+              </span>
             </div>
-            <p className="font-medium text-sm leading-relaxed mb-6">
-              You sit for 3 hours straight after lunch. Stack a 5-minute walk immediately after your 2 PM coffee to lower afternoon stress.
+            <p className={`font-medium text-sm leading-relaxed mb-6 ${questAccepted ? 'text-white/90' : 'text-black/80'}`}>
+              You sit for 3 hours straight after lunch. Stack a 5-minute walk immediately after your 2 PM coffee to lower afternoon stress levels.
             </p>
           </div>
-          <button className="bg-black text-white w-full py-4 rounded-xl font-bold hover:bg-opacity-80 transition">
-            Accept Quest
+          <button 
+            onClick={() => setQuestAccepted(!questAccepted)}
+            className={`w-full py-4 rounded-xl font-bold transition-all active:scale-95 ${questAccepted ? 'bg-white text-black' : 'bg-black text-white hover:bg-opacity-80'}`}
+          >
+            {questAccepted ? 'Quest Accepted ✓' : 'Accept Quest'}
           </button>
         </div>
 
-        <div className="bg-[#005840] rounded-[2rem] p-8 text-white relative overflow-hidden">
+        <div className="bg-[#005840] rounded-[2rem] p-8 text-white relative overflow-hidden group">
           <div className="relative z-10">
             <h3 className="font-display text-2xl font-bold mb-4">Verified Baseline</h3>
             <p className="text-white/80 text-sm leading-relaxed mb-6">
-              WHO guidelines suggest 150 active minutes. You are currently at 112 mins. A 40-minute walk this weekend hits your goal.
+              WHO guidelines suggest 150 active minutes. You are currently at 112 mins. A 40-minute walk this weekend hits your weekly goal.
             </p>
           </div>
-          <svg className="absolute -bottom-4 -right-4 w-32 h-32 text-white/10 pointer-events-none" viewBox="0 0 24 24" fill="currentColor">
+          <svg className="absolute -bottom-4 -right-4 w-32 h-32 text-white/10 group-hover:scale-110 group-hover:text-white/20 transition-all duration-500 pointer-events-none" viewBox="0 0 24 24" fill="currentColor">
              <path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm0-2a8 8 0 100-16 8 8 0 000 16zm-1-5h2v2h-2v-2zm0-8h2v6h-2V7z"/>
           </svg>
         </div>
