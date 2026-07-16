@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Playfair_Display, Outfit, Plus_Jakarta_Sans } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
+import SmoothScroller from "../components/SmoothScroller";
 
 const playfairDisplay = Playfair_Display({
   variable: "--font-serif-next",
@@ -38,7 +39,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${playfairDisplay.variable} ${outfit.variable} ${plusJakartaSans.variable} ${qurova.variable}`}>
-      <body>{children}</body>
+      <body>
+        <SmoothScroller>
+          {children}
+        </SmoothScroller>
+      </body>
     </html>
   );
 }

@@ -9,7 +9,7 @@ export default function LandingPage() {
         <div className="flex items-center">
           <img src="/samsung-logo-blue.png" alt="Samsung" className="h-4 md:h-10 object-contain" />
           <div className="h-6 w-px bg-[#1428A0]/20 mx-4 md:mx-5"></div>
-          <span className="font-logo font-bold text-3xl md:text-4xl tracking-normal text-[#005840] mt-1">Zenith</span>
+          <span className="font-logo font-bold text-3xl md:text-4xl tracking-normal text-[#005840] mt-1">Zenith🍃</span>
         </div>
         
         <div className="hidden md:flex items-center gap-10 font-bold text-sm text-[#005840]">
@@ -19,8 +19,8 @@ export default function LandingPage() {
         </div>
 
         <div className="flex items-center gap-6">
-          <Link href="/dashboard" className="hidden md:block font-bold text-sm text-[#005840] hover:text-black transition-colors">Log in</Link>
-          <Link href="/dashboard" className="bg-[#005840] text-white px-7 py-3 rounded-full font-bold text-sm hover:bg-black transition-all hover:scale-105">
+          <Link href="/login" className="hidden md:block font-bold text-sm text-[#005840] hover:text-black transition-colors">Log in</Link>
+          <Link href="/login" className="bg-[#005840] text-white px-7 py-3 rounded-full font-bold text-sm hover:bg-black transition-all hover:scale-105">
             Get started
           </Link>
         </div>
@@ -41,7 +41,7 @@ export default function LandingPage() {
             </p>
             <div>
               <Link 
-                href="/dashboard"
+                href="/login"
                 className="inline-flex items-center justify-center bg-[#005840] text-white px-10 py-5 rounded-full font-bold text-lg hover:bg-black transition-all hover:-translate-y-1 active:scale-95 shadow-xl shadow-[#005840]/20"
               >
                 Launch Dashboard
