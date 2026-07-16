@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Weekly wellness dashboard prototype for Samsung Health tracking steps, sleep duration, resting heart rate, stress levels, and activity statistics.">
+    <title>Emily Park - Weekly Wellness Dashboard Prototype</title>
+    <!-- Outfit Font from Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="app-wrapper">
+        <!-- Top Bar Navigation/Profile Header -->
+        <header class="header-bar">
+            <div class="profile-title">
+                <h1 id="dashboard-title">Emily Park's Health Summary</h1>
+                <p id="dashboard-period">Wearable Wellness Log • July 6 - July 12, 2026 (7 Days)</p>
+            </div>
+            
+            <div class="controls-container">
+
+                <!-- Days Filter Segment -->
+                <div class="filter-group" role="group" aria-label="Day Category Filter">
+                    <button class="filter-btn active" data-filter="all" id="btn-filter-all">All Week</button>
+                    <button class="filter-btn" data-filter="workdays" id="btn-filter-workdays">Workdays</button>
+                    <button class="filter-btn" data-filter="weekends" id="btn-filter-weekends">Weekends</button>
+                </div>
+
+                <!-- Static vs Interactive View Toggle -->
+                <div class="toggle-group">
+                    <span>Show Matplotlib Plots</span>
+                    <label class="switch" aria-label="Toggle between interactive and static matplotlib plots">
+                        <input type="checkbox" id="view-toggle-switch">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+        </header>
+
+        <!-- Headline Performance Stats -->
+        <section class="metrics-grid" aria-label="Weekly Metric Aggregates">
+            <!-- Steps Card -->
+            <div class="metric-card card-steps" id="metric-card-steps">
+                <div class="metric-header">
+                    <span>Steps Average</span>
+                    <i class="icon" aria-hidden="true">👣</i>
+                </div>
+                <div class="metric-value" id="val-steps">0</div>
+                <div class="metric-status" id="status-steps">Calculating...</div>
+            </div>
+
+            <!-- Sleep Card -->
+            <div class="metric-card card-sleep" id="metric-card-sleep">
+                <div class="metric-header">
+                    <span>Sleep Average</span>
+                    <i class="icon" aria-hidden="true">🌙</i>
+                </div>
+                <div class="metric-value" id="val-sleep">0.0</div>
+                <div class="metric-status" id="status-sleep">Calculating...</div>
+            </div>
+
+            <!-- Stress Card -->
+            <div class="metric-card card-stress" id="metric-card-stress">
+                <div class="metric-header">
+                    <span>Stress Score</span>
+                    <i class="icon" aria-hidden="true">🔥</i>
+                </div>
+                <div class="metric-value" id="val-stress">0</div>
+                <div class="metric-status" id="status-stress">Calculating...</div>
+            </div>
+
+            <!-- Heart Rate Card -->
+            <div class="metric-card card-heart" id="metric-card-heart">
+                <div class="metric-header">
+                    <span>Avg Resting HR</span>
+                    <i class="icon" aria-hidden="true">❤️</i>
+                </div>
+                <div class="metric-value" id="val-heart">0</div>
+                <div class="metric-status" id="status-heart">Calculating...</div>
+            </div>
+
+            <!-- Active Minutes Card -->
+            <div class="metric-card card-active" id="metric-card-active">
+                <div class="metric-header">
+                    <span>Active Minutes</span>
+                    <i class="icon" aria-hidden="true">⚡</i>
+                </div>
+                <div class="metric-value" id="val-active">0</div>
+                <div class="metric-status" id="status-active">Calculating...</div>
+            </div>
+        </section>
+
+        <!-- Main Dashboard Content Split -->
+        <main class="content-layout">
+            <!-- Left Side: Visualizations -->
+            <section class="visuals-panel" aria-label="Daily Metrics Trend Tracking">
+                <div class="section-card">
+                    <h2>📊 Weekly Performance Trends</h2>
+                    <div class="charts-wrapper">
+                        <!-- Chart 1: Steps -->
+                        <div class="chart-holder">
+                            <h3>👣 Daily Locomotion Steps Trend</h3>
+                            <div class="chart-canvas-holder">
+                                <canvas id="chart-steps-canvas" height="240"></canvas>
+                            </div>
+                            <div class="static-image-holder">
+                                <img src="steps_weekly.png" id="img-static-steps" alt="Static steps Matplotlib plot">
+                            </div>
+                        </div>
+
+                        <!-- Chart 2: Sleep Duration -->
+                        <div class="chart-holder">
+                            <h3>🌙 Nightly Sleep Hours Duration</h3>
+                            <div class="chart-canvas-holder">
+                                <canvas id="chart-sleep-canvas" height="240"></canvas>
+                            </div>
+                            <div class="static-image-holder">
+                                <img src="sleep_weekly.png" id="img-static-sleep" alt="Static sleep Matplotlib plot">
+                            </div>
+                        </div>
+
+                        <!-- Chart 3: Stress Score -->
+                        <div class="chart-holder">
+                            <h3>🔥 Autonomic Stress Score</h3>
+                            <div class="chart-canvas-holder">
+                                <canvas id="chart-stress-canvas" height="240"></canvas>
+                            </div>
+                            <div class="static-image-holder">
+                                <img src="stress_weekly.png" id="img-static-stress" alt="Static stress Matplotlib plot">
+                            </div>
+                        </div>
+
+                        <!-- Chart 4: Heart Rate Variability (HRV) -->
+                        <div class="chart-holder">
+                            <h3>💓 Heart Rate Variability (HRV)</h3>
+                            <div class="chart-canvas-holder">
+                                <canvas id="chart-hrv-canvas" height="240"></canvas>
+                            </div>
+                            <div class="static-image-holder">
+                                <img src="hrv_weekly.png" id="img-static-hrv" alt="Static HRV Matplotlib plot">
+                            </div>
+                        </div>
+
+                        <!-- Chart 5: Deep Sleep Duration -->
+                        <div class="chart-holder">
+                            <h3>💤 Nightly Deep Sleep Hours</h3>
+                            <div class="chart-canvas-holder">
+                                <canvas id="chart-deep-sleep-canvas" height="240"></canvas>
+                            </div>
+                            <div class="static-image-holder">
+                                <img src="deep_sleep_weekly.png" id="img-static-deep-sleep" alt="Static deep sleep Matplotlib plot">
+                            </div>
+                        </div>
+
+                        <!-- Chart 6: VO2 Max -->
+                        <div class="chart-holder">
+                            <h3>🏃‍♀️ Cardiovascular VO2 Max</h3>
+                            <div class="chart-canvas-holder">
+                                <canvas id="chart-vo2max-canvas" height="240"></canvas>
+                            </div>
+                            <div class="static-image-holder">
+                                <img src="vo2max_weekly.png" id="img-static-vo2max" alt="Static VO2 Max Matplotlib plot">
+                            </div>
+                        </div>
+
+                        <!-- Chart 7: Active Calories Burned -->
+                        <div class="chart-holder">
+                            <h3>🔥 Active Calories Burned</h3>
+                            <div class="chart-canvas-holder">
+                                <canvas id="chart-calories-canvas" height="240"></canvas>
+                            </div>
+                            <div class="static-image-holder">
+                                <img src="calories_weekly.png" id="img-static-calories" alt="Static active calories Matplotlib plot">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Right Side: Sidebar - Coaching Advice and Log Data -->
+            <aside class="sidebar-panel" aria-label="Insights and raw sensor logs">
+                <!-- Coaching Advice Card -->
+                <div class="coaching-box" id="coaching-box-panel">
+                    <h2>⚡ Samsung Coaching Engine</h2>
+                    <div class="tips-list" id="coaching-tips-container">
+                        <!-- Instantiated by JS dynamically -->
+                    </div>
+                </div>
+
+                <!-- Raw Log Table Grid -->
+                <div class="log-box">
+                    <div class="log-box-header" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+                        <h2 style="font-size:1.1rem; font-weight:700;">📋 Weekly Activity Log</h2>
+                        <button class="export-btn" id="export-csv-btn">Export CSV</button>
+                    </div>
+                    <div class="table-wrapper">
+                        <table id="log-table">
+                            <thead>
+                                <tr>
+                                    <th>Day</th>
+                                    <th>Steps</th>
+                                    <th>Sleep</th>
+                                    <th>RHR</th>
+                                    <th>Stress</th>
+                                    <th>Active</th>
+                                </tr>
+                            </thead>
+                            <tbody id="log-table-body">
+                                <!-- Instantiated by JS dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </aside>
+        </main>
+    </div>
+
+    <!-- Data loading scripts -->
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
