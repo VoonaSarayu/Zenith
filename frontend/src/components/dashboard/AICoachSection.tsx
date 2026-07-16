@@ -5,17 +5,17 @@ export default function AICoachSection({ activeTab }: { activeTab: string }) {
   const [questAccepted, setQuestAccepted] = useState(false);
 
   const content = {
-    Aura: { title: "Circadian Sync", text: "Your heart rate peaked on Tuesday because sleep was only 5.5h. Engage wind-down mode 30 mins earlier tonight on your SmartThings ecosystem." },
-    Metrics: { title: "SpO2 Anomaly", text: "Oxygen levels dropped to 92% at 3 AM. This correlates with your reported nasal congestion. Continue monitoring tonight via Galaxy Watch." },
-    Coach: { title: "Endurance Phase", text: "Your HRV is perfectly primed for a high-intensity workout today. Push your physical limits on the treadmill this afternoon." }
+    Energy: { title: "Circadian Synchronization", text: "Heart rate variability decreased on Tuesday due to a 5.5h sleep cycle. Triggering SmartThings wind-down mode 30 mins earlier tonight is recommended." },
+    Vitals: { title: "SpO2 Fluctuation", text: "Blood oxygen saturation dropped to 92% at 3 AM, correlating with reported nasal congestion. Continuous Galaxy Watch monitoring active." },
+    Insights: { title: "Endurance Capacity", text: "Your cardiovascular baseline is perfectly primed for high-output physical exertion today. Peak performance window identified." }
   };
 
-  const currentContent = content[activeTab as keyof typeof content];
+  const currentContent = content[activeTab as keyof typeof content] || content.Energy;
 
   return (
     <section className="px-8 py-16 md:px-16 text-white max-w-7xl mx-auto">
       <div className="flex justify-between items-end mb-10">
-        <h2 className="font-display text-4xl font-bold">Aura AI Intelligence</h2>
+        <h2 className="font-display text-4xl font-bold">Zenith Intelligence</h2>
         <span className="text-gray-400 font-semibold cursor-pointer hover:text-[#D1F843] transition-colors flex items-center gap-2">
           Sync Galaxy Health 
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
@@ -36,20 +36,20 @@ export default function AICoachSection({ activeTab }: { activeTab: string }) {
         <div className={`rounded-[2rem] p-8 flex flex-col justify-between transition-all duration-500 ${questAccepted ? 'bg-[#005840] text-white' : 'bg-[#D1F843] text-black hover:-translate-y-2'}`}>
           <div>
             <div className="flex justify-between items-center mb-6">
-              <h3 className="font-display text-2xl font-bold">Habit Stack</h3>
+              <h3 className="font-display text-2xl font-bold">Behavioral Protocol</h3>
               <span className={`${questAccepted ? 'bg-white text-black' : 'bg-black text-white'} px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider transition-colors`}>
-                {questAccepted ? 'Active' : 'Quest'}
+                {questAccepted ? 'Active' : 'Protocol'}
               </span>
             </div>
             <p className={`font-medium text-sm leading-relaxed mb-6 ${questAccepted ? 'text-white/90' : 'text-black/80'}`}>
-              You sit for 3 hours straight after lunch. Stack a 5-minute walk immediately after your 2 PM coffee to lower afternoon stress levels.
+              Sedentary state detected for 3 hours post-meridiem. Initiating a 5-minute kinetic activation protocol post-caffeine consumption lowers cortisol levels.
             </p>
           </div>
           <button 
             onClick={() => setQuestAccepted(!questAccepted)}
             className={`w-full py-4 rounded-xl font-bold transition-all active:scale-95 ${questAccepted ? 'bg-white text-black' : 'bg-black text-white hover:bg-opacity-80'}`}
           >
-            {questAccepted ? 'Quest Accepted ✓' : 'Accept Quest'}
+            {questAccepted ? 'Protocol Active ✓' : 'Initiate Protocol'}
           </button>
         </div>
 

@@ -7,7 +7,7 @@ import MetricsGrid from './MetricsGrid';
 import AICoachSection from './AICoachSection';
 
 export default function Dashboard() {
-  const [activeTab, setActiveTab] = useState('Aura');
+  const [activeTab, setActiveTab] = useState('Energy');
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
@@ -15,9 +15,9 @@ export default function Dashboard() {
   }, []);
 
   const getBgColor = () => {
-    if (activeTab === 'Aura') return 'bg-[#41D58C]';
-    if (activeTab === 'Metrics') return 'bg-[#D1F843]';
-    if (activeTab === 'Coach') return 'bg-[#005840]';
+    if (activeTab === 'Energy') return 'bg-[#41D58C]';
+    if (activeTab === 'Vitals') return 'bg-[#D1F843]';
+    if (activeTab === 'Insights') return 'bg-[#005840]';
     return 'bg-[#41D58C]';
   };
 

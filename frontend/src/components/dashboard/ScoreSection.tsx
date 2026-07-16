@@ -4,9 +4,9 @@ import React, { useEffect, useState } from 'react';
 export default function ScoreSection({ activeTab }: { activeTab: string }) {
   const [score, setScore] = useState(0);
   
-  const targetScore = activeTab === 'Aura' ? 85 : activeTab === 'Metrics' ? 92 : 98;
-  const subtitle = activeTab === 'Aura' ? 'Energy Capacity' : activeTab === 'Metrics' ? 'Recovery Index' : 'Readiness Level';
-  const detail = activeTab === 'Aura' ? 'Excellent. Synced via Galaxy Ring.' : activeTab === 'Metrics' ? 'HRV stabilized overnight.' : 'Prime state for intense physical strain.';
+  const targetScore = activeTab === 'Energy' ? 85 : activeTab === 'Vitals' ? 92 : 98;
+  const subtitle = activeTab === 'Energy' ? 'Energy Capacity' : activeTab === 'Vitals' ? 'Recovery Index' : 'Physiological Readiness';
+  const detail = activeTab === 'Energy' ? 'Validated via Galaxy Ring.' : activeTab === 'Vitals' ? 'HRV parameters stabilized.' : 'Optimal state for peak output.';
 
   useEffect(() => {
     setScore(0);
@@ -21,7 +21,7 @@ export default function ScoreSection({ activeTab }: { activeTab: string }) {
   }, [targetScore]);
 
   return (
-    <div className={`lg:col-span-4 flex flex-col justify-center transition-colors duration-700 ${activeTab === 'Coach' ? 'text-white' : 'text-black'}`}>
+    <div className={`lg:col-span-4 flex flex-col justify-center transition-colors duration-700 ${activeTab === 'Insights' ? 'text-white' : 'text-black'}`}>
       <div className="mb-3 text-xs font-bold uppercase tracking-widest opacity-60">Current Status</div>
       <h1 className="font-display text-4xl md:text-6xl font-bold leading-tight tracking-tight mb-8">
         {subtitle}
@@ -37,8 +37,8 @@ export default function ScoreSection({ activeTab }: { activeTab: string }) {
         {detail}
       </div>
       
-      <div className={`mt-8 rounded-3xl p-5 inline-block w-max transition-colors duration-700 ${activeTab === 'Coach' ? 'bg-white/10 backdrop-blur-md' : 'bg-black/5'}`}>
-        <div className={`font-semibold text-xs mb-1 uppercase tracking-wider ${activeTab === 'Coach' ? 'text-gray-300' : 'text-gray-500'}`}>Optimization Goal</div>
+      <div className={`mt-8 rounded-3xl p-5 inline-block w-max transition-colors duration-700 ${activeTab === 'Insights' ? 'bg-white/10 backdrop-blur-md' : 'bg-black/5'}`}>
+        <div className={`font-semibold text-xs mb-1 uppercase tracking-wider ${activeTab === 'Insights' ? 'text-gray-300' : 'text-gray-500'}`}>Clinical Target</div>
         <div className="font-display text-2xl font-bold flex items-center gap-2">
           {Math.floor(targetScore * 1.08)} <span className="text-xs font-medium mt-1 opacity-50">/ {targetScore + 15}</span>
         </div>
