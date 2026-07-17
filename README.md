@@ -54,17 +54,22 @@ To run the data scripts (when implemented):
 python scripts/process_metrics.py
 ```
 
-### 2.Frontend Setup (Next.js)
+### 2. Frontend Setup (Next.js)
 
-Navigate to the frontend folder, install packages, and start the development server:
+Navigate to the frontend folder, install the required dependencies, and start the development server:
 
+```bash
 cd frontend
 npm install
 npm run dev
+```
 
-Open http://localhost:3000 to view the live dashboard.
+To access the application, open the following URL in your browser:
 
-Make changes to the source files, and the application will automatically reload to reflect your updates.
+```text
+http://localhost:3000
+```
+
 
 ---
 
