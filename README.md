@@ -47,21 +47,24 @@ Navigate to the backend folder and set up a virtual environment:
 cd backend
 python -m venv .venv
 .venv\Scripts\activate      # On Windows (or source .venv/bin/activate on Mac/Linux)
-pip install -r requirements.txt
+pip insFrontend Setup (Next.js)
+
+Navigate to the frontend folder, install packages, and start the development server:
+
+cd frontend
+npm install
+npm run dev
+
+Open http://localhost:3000 to view the live dashboard.
+
+The development server supports hot reloading, so changes are reflected instantly in the browser.tall -r requirements.txt
 ```
 To run the data scripts (when implemented):
 ```bash
 python scripts/process_metrics.py
 ```
 
-### 2. Frontend Setup (Next.js)
-Navigate to the frontend folder, install packages, and start the development server:
-```bash
-cd frontend
-npm install
-npm run dev
-```
-Open [http://localhost:3000](http://localhost:3000) to view the live dashboard.
+### 2. 
 
 ---
 
