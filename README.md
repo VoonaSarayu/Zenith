@@ -113,13 +113,20 @@ Create a `.env.local` file inside the `frontend/` directory:
 GROQ_API_KEY=your_groq_api_key_here
 ```
 
-### 3. Run the Dashboard
+### 2. Frontend Setup (Next.js)
+
+Navigate to the frontend folder, install the required dependencies, and start the development server:
 
 ```bash
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to view the live dashboard. Click the **Ask Zenith AI** button in the bottom right to interact with the RAG pipeline.
+To access the application, open the following URL in your browser:
+
+```text
+http://localhost:3000
+```
+
 
 ---
 
