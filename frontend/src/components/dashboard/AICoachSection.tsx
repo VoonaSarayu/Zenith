@@ -1,13 +1,14 @@
 "use client"
 import React, { useState } from 'react';
+import weeklyData from '../../data/dashboard_data_weekly.json';
 
 export default function AICoachSection({ activeTab }: { activeTab: string }) {
   const [questAccepted, setQuestAccepted] = useState(false);
 
   const content = {
-    Energy: { title: "Circadian Synchronization", text: "Heart rate variability decreased on Tuesday due to a 5.5h sleep cycle. Triggering SmartThings wind-down mode 30 mins earlier tonight is recommended." },
-    Vitals: { title: "SpO2 Fluctuation", text: "Blood oxygen saturation dropped to 92% at 3 AM, correlating with reported nasal congestion. Continuous Galaxy Watch monitoring active." },
-    Insights: { title: "Endurance Capacity", text: "Your cardiovascular baseline is perfectly primed for high-output physical exertion today. Peak performance window identified." }
+    Energy: { title: "Sleep & Stress Insight", text: weeklyData.coaching_messages[1] },
+    Vitals: { title: "Weekly Consistency", text: weeklyData.coaching_messages[2] },
+    Insights: { title: "Activity Milestone", text: weeklyData.coaching_messages[0] }
   };
 
   const currentContent = content[activeTab as keyof typeof content] || content.Energy;
@@ -42,22 +43,17 @@ export default function AICoachSection({ activeTab }: { activeTab: string }) {
               </span>
             </div>
             <p className={`font-medium text-sm leading-relaxed mb-6 ${questAccepted ? 'text-white/90' : 'text-black/80'}`}>
-              Sedentary state detected for 3 hours post-meridiem. Initiating a 5-minute kinetic activation protocol post-caffeine consumption lowers cortisol levels.
+              You've been sitting for a few hours this afternoon. Taking a quick 5-minute stretching break right now can help lower your stress and keep you energized!
             </p>
           </div>
-          <button 
-            onClick={() => setQuestAccepted(!questAccepted)}
-            className={`w-full py-4 rounded-xl font-bold transition-all active:scale-95 ${questAccepted ? 'bg-white text-black' : 'bg-black text-white hover:bg-opacity-80'}`}
-          >
-            {questAccepted ? 'Protocol Active ✓' : 'Initiate Protocol'}
-          </button>
+
         </div>
 
         <div className="bg-[#005840] rounded-[2rem] p-8 text-white relative overflow-hidden group">
           <div className="relative z-10">
             <h3 className="font-display text-2xl font-bold mb-4">Verified Baseline</h3>
             <p className="text-white/80 text-sm leading-relaxed mb-6">
-              WHO guidelines suggest 150 active minutes. You are currently at 112 mins. A 40-minute walk this weekend hits your weekly goal.
+              WHO guidelines suggest 150 active minutes per week. You reached {weeklyData.metrics.total_active_minutes} minutes this week! You crushed your weekly goal.
             </p>
           </div>
           <svg className="absolute -bottom-4 -right-4 w-32 h-32 text-white/10 group-hover:scale-110 group-hover:text-white/20 transition-all duration-500 pointer-events-none" viewBox="0 0 24 24" fill="currentColor">

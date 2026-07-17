@@ -90,11 +90,7 @@ export default function LandingPage() {
           <span className="font-logo font-bold text-3xl md:text-4xl tracking-normal text-[#005840] mt-1">Zenith🍃</span>
         </div>
         
-        <div className="hidden md:flex items-center gap-10 font-bold text-sm text-[#005840]">
-          <Link href="#" className="hover:text-black transition-colors">Galaxy integration</Link>
-          <Link href="#" className="hover:text-black transition-colors">Clinical validity</Link>
-          <Link href="#" className="hover:text-black transition-colors">How it works</Link>
-        </div>
+
 
         <div className="flex items-center gap-6">
           <Link href="/login" className="hidden md:block font-bold text-sm text-[#005840] hover:text-black transition-colors">Log in</Link>

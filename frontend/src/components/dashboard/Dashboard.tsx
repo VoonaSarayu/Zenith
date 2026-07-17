@@ -8,6 +8,7 @@ import GaugeChart from './GaugeChart';
 import MetricsGrid from './MetricsGrid';
 import AICoachSection from './AICoachSection';
 import WeeklyAnalysis from './WeeklyAnalysis';
+import ZenithChatbot from './ZenithChatbot';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -105,6 +106,7 @@ export default function Dashboard() {
       <div ref={weeklyRef} className="opacity-0">
         <WeeklyAnalysis />
       </div>
+      <ZenithChatbot />
     </main>
   );
 }
