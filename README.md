@@ -19,6 +19,7 @@
 </div>
 
 ---
+<img width="1881" height="984" alt="image" src="https://github.com/user-attachments/assets/0dd7bee4-2e14-45cb-b33e-4d27714e0371" />
 
 ## What is Zenith?
 
